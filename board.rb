@@ -42,7 +42,7 @@ class Board
     self[start_pos].position = start_pos
     self[end_pos].position = end_pos
   end
-# WE NEED TO FIX THESE METHODS FOR MOVE_PIECE
+
   def [](pos)
     x, y = pos
     @grid[x][y]
@@ -59,10 +59,4 @@ class Board
 
     true
   end
-
 end
-
-
-# first row: rook, knight, bishop, queen,
-#            king, bishop, knight, and rook;
-# second row: pawns
