@@ -1,7 +1,6 @@
 module SlidingPiece
   def moves
     move_dirs
-    
   end
 
   def move_dirs

@@ -16,7 +16,7 @@ class Board
   def populate
     grid.each_index do |row|
       grid.each_index do |column|
-        @grid[row][column] = Piece.new([row,column],self) unless (2..5).include?(row)
+        @grid[row][column] = Queen.new([row,column],self) unless (2..5).include?(row)
         @grid[row][column] = NullPiece.instance if (2..5).include?(row)
       end
     end
@@ -24,11 +24,13 @@ class Board
 
   def move_piece(start_pos, end_pos)
     raise InvalidMove.new("No piece to move") if self[start_pos].is_a?(NullPiece)
-    raise InvalidMove.new("Can't move there") unless self[start_pos].valid_move?()
+    raise InvalidMove.new("Can't move there. Not a valid move.") unless self[start_pos].valid_move?(start_pos, end_pos)
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+    self[start_pos].position = start_pos
+    self[end_pos].position = end_pos
   end
-
-  def [](*pos)
+# WE NEED TO FIX THESE METHODS FOR MOVE_PIECE
+  def [](pos)
     x, y = pos
     @grid[x][y]
   end

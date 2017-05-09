@@ -12,15 +12,16 @@ class Display
     size = @board.grid.length
     size.times do |row|
       size.times do |column|
-        if @cursor.cursor_pos == [row,column]
+        dest = [row,column]
+        if @cursor.cursor_pos == dest
           color = @cursor.selected ? :blue : :green
-          print " #{@board[row,column]} ".colorize(background: color)
+          print " #{@board[dest]} ".colorize(background: color)
         elsif row % 2 == 0 && column % 2 == 0
-          print " #{@board[row,column]} ".colorize(background: :white)
+          print " #{@board[dest]} ".colorize(background: :white)
         elsif row % 2 == 1 && column % 2 != 0
-          print " #{@board[row,column]} ".colorize(background: :white)
+          print " #{@board[dest]} ".colorize(background: :white)
         else
-          print " #{@board[row,column]} "
+          print " #{@board[dest]} "
         end
       end
       puts
