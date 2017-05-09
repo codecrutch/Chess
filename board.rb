@@ -22,9 +22,11 @@ class Board
         if row == 0
           @grid[row][column] = elite_top.shift.new([row,column], self)
         elsif row == 7
-          @grid[row][column] = elite_bottom.shift.new([row,column], self)
-        elsif row == 1 || row == 6
+          @grid[row][column] = elite_bottom.shift.new([row,column], self, :magenta)
+        elsif row == 1
           @grid[row][column] = pawns.shift.new([row,column], self)
+        elsif row == 6
+          @grid[row][column] = pawns.shift.new([row,column], self, :magenta)
         end
 
         # @grid[row][column] = Knight.new([row,column],self) unless (2..5).include?(row)
@@ -51,8 +53,7 @@ class Board
     @grid[x][y] = value
   end
 
-  def in_bounds?(*pos)
-    x, y = pos
+  def in_bounds?(x, y)
     return false if x < 0 || x > grid.length - 1
     return false if y < 0 || y > grid.length - 1
 
