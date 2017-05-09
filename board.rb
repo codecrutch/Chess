@@ -28,20 +28,20 @@ class Board
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
 
-  def [](pos)
+  def [](*pos)
     x, y = pos
     @grid[x][y]
   end
 
-  def []=(*pos,value)
+  def []=(pos,value)
     x,y = pos
     @grid[x][y] = value
   end
 
-  def in_bounds?(pos)
+  def in_bounds?(*pos)
     x, y = pos
-    return false if x is < 0 || x > grid.length
-    return false if y is < 0 || y > grid.length
+    return false if x < 0 || x > grid.length - 1
+    return false if y < 0 || y > grid.length - 1
 
     true
   end

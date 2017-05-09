@@ -1,28 +1,53 @@
-class Piece
+require_relative 'chessmoves'
 
-  # def initialize(type)
-  #   @type = type
-  # end
-  #
-  # def symbol
-  #   @type.to_sym
-  # end
-  #
-  #
+class Piece
   def valid_move?()
   end
 
-  def inspect
-    :P
+  def moves
   end
-
 
   def to_s
-    :P
+    "♖".colorize(:magenta)
   end
-
 end
 
-class NullPiece < Piece
+class Queen < Piece
+  include SlidingPiece
+end
 
+class King < Piece
+  include SteppingPiece
+end
+
+class Bishop < Piece
+  include SlidingPiece
+end
+
+class Rook < Piece
+  include SlidingPiece
+end
+
+class Knight < Piece
+  include SteppingPiece
+end
+
+
+
+
+class NullPiece < Piece
+ #  @@instance = NullPiece.new
+ #
+ # def self.instance
+ #   return @@instance
+ # end
+ #
+ # def to_s
+ #   " "
+ # end
+ #
+ # private_class_method :new
+ def to_s
+   " "
+ end
 end
