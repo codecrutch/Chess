@@ -14,12 +14,12 @@ class Display
       size.times do |column|
         dest = [row,column]
         if @cursor.cursor_pos == dest
-          color = @cursor.selected ? :blue : :green
+          color = @cursor.selected ? :blue : :light_green
           print " #{@board[dest]} ".colorize(background: color)
         elsif row % 2 == 0 && column % 2 == 0
-          print " #{@board[dest]} ".colorize(background: :white)
+          print " #{@board[dest]} ".colorize(background: :light_white)
         elsif row % 2 == 1 && column % 2 != 0
-          print " #{@board[dest]} ".colorize(background: :white)
+          print " #{@board[dest]} ".colorize(background: :light_white)
         else
           print " #{@board[dest]} "
         end
@@ -31,6 +31,8 @@ class Display
 
   def run
     while true
+      # puts String.colors
+      # sleep 100
       system "clear"
       self.render
       @cursor.get_input

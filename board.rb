@@ -14,9 +14,20 @@ class Board
   end
 
   def populate
+    pawns = [Pawn] * 16
+    elite_top = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+    elite_bottom = elite_top.dup
     grid.each_index do |row|
       grid.each_index do |column|
-        @grid[row][column] = Queen.new([row,column],self) unless (2..5).include?(row)
+        if row == 0
+          @grid[row][column] = elite_top.shift.new([row,column], self)
+        elsif row == 7
+          @grid[row][column] = elite_bottom.shift.new([row,column], self)
+        elsif row == 1 || row == 6
+          @grid[row][column] = pawns.shift.new([row,column], self)
+        end
+
+        # @grid[row][column] = Knight.new([row,column],self) unless (2..5).include?(row)
         @grid[row][column] = NullPiece.instance if (2..5).include?(row)
       end
     end
