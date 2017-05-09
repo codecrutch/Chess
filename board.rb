@@ -16,8 +16,8 @@ class Board
   def populate
     grid.each_index do |row|
       grid.each_index do |column|
-        @grid[row][column] = Piece.new unless (2..5).include?(row)
-        @grid[row][column] = NullPiece.new if (2..5).include?(row)
+        @grid[row][column] = Piece.new([row,column],self) unless (2..5).include?(row)
+        @grid[row][column] = NullPiece.instance if (2..5).include?(row)
       end
     end
   end
